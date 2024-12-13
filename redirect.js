@@ -1,51 +1,34 @@
 function redirectToUrl() {
-    // Get the URL entered by the user
-    const urlInput = document.getElementById("urlInput").value;
+    // Get the URL entered in the input field
+    const inputElement = document.getElementById('url');
+    const url = inputElement.value;
 
     try {
-        // Validate the URL
-        const url = new URL(urlInput); // Throws an error if invalid
+        // Validate the URL to make sure it's correct
+        const validUrl = new URL(url);
 
-        // Open a new blank page
-        const blankWindow = window.open("about:blank", "_blank");
+        // Open a new about:blank page
+        const newWindow = window.open('about:blank', '_blank');
 
-        if (blankWindow) {
-            // Write the HTML structure for the blank page
-            blankWindow.document.write(`
-                <!DOCTYPE html>
-                <html lang="en">
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Redirect</title>
-                    <style>
-                        body, html {
-                            margin: 0;
-                            padding: 0;
-                            width: 100%;
-                            height: 100%;
-                            overflow: hidden;
-                        }
-                        iframe {
-                            width: 100%;
-                            height: 100%;
-                            border: none;
-                        }
-                    </style>
-                </head>
-                <body>
-                    <iframe src="${url.href}" sandbox="allow-scripts allow-same-origin"></iframe>
-                </body>
-                </html>
-            `);
+        if (newWindow) {
+            // Create an iframe element
+            const iframe = newWindow.document.createElement('iframe');
+            iframe.src = validUrl.href;
+            iframe.style.width = '100%'; // Make the iframe take up the full width
+            iframe.style.height = '100%'; // Make the iframe take up the full height
+            iframe.style.border = 'none'; // Remove the border
+            iframe.sandbox = ''; // Add a sandbox for security
 
-            // Close the document to finish rendering
-            blankWindow.document.close();
+            // Style the body of the new window and append the iframe
+            newWindow.document.body.style.margin = '0';
+            newWindow.document.body.style.height = '100vh';
+            newWindow.document.body.appendChild(iframe);
         } else {
-            alert("Pop-up blocked! Please allow pop-ups for this site.");
+            // If the new window doesn't open, show an error
+            alert('Failed to open a new window. Check your browser settings.');
         }
-    } catch (e) {
-        // Alert the user if the URL is invalid
-        alert("Invalid URL. Please enter a valid URL (e.g., https://example.com).");
+    } catch (error) {
+        // If the URL is invalid, show an alert
+        alert('Invalid URL. Please enter a valid URL.');
     }
 }
