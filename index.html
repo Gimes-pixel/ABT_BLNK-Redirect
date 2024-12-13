@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Redirect</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        input {
+            padding: 10px;
+            width: 80%;
+            max-width: 500px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Enter a URL to Redirect</h1>
+    <input type="text" id="urlInput" placeholder="Enter a valid URL (e.g., https://example.com)">
+    <br>
+    <button onclick="redirectToUrl()">Redirect</button>
+
+    <script src="redirect.js"></script>
+</body>
+</html>
