@@ -32,3 +32,4 @@ function redirectToUrl() {
         alert('Invalid URL. Please enter a valid URL.');
     }
 }
+
